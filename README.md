@@ -15,10 +15,13 @@ If the Future can not be proven terminated, then the Guard will be dropped, and 
 
 ## Some Notes
 1. In order to ensure that dead code elimination can work correctly, a higher opt-level needs to be configured.
-2. When the app panic, the future will be dropped even itself can definitely terminate. So users may set `panic = "abort"` to avoid future be dropped due to panic possibility.
+2. When the app panic, the future will be dropped even if itself can definitely terminate. So users may set `panic = "abort"` to avoid future be dropped due to panic possibility.
 
 ```toml
 [profile.dev]
 opt-level = 3
 panic = "abort"
 ```
+
+## Problems
+1. If it triggers a compilation failure, it doesn't mean that there is something wrong with your code, or it may not be proven during compilation.
